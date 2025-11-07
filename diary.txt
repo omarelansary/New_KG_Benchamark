@@ -1,0 +1,11 @@
+i wrote the code but the code, is now working on only data from pykeen, it should be extended to also work on data from a folder. this code has 2 problems the first one is i still donot know what hhyper parameters to put in the threshholds and the second one is that i cannot run code fast.
+today's output is
+
+dataset anti-symmetry   composition     symmetry
+biokg       17      0       0
+cskg        51      6       0
+drkg        78      0       2
+pharmkg     27      0       1
+
+6 Nov 2025
+The whole night the PC was running the KG named "primekg" and it used 98% of the memory and 100% of disk, so i decided to abort in the morning since it didnot finish and will setup the HPC of the uni. or try to change the code to work on GPU.

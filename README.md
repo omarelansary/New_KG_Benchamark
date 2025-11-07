@@ -78,6 +78,38 @@ This repository doesn’t define a specific entry-point yet. Common patterns:
 
 Adjust the command to your code structure once available.
 
+## KG Pattern Statistics
+Detect symmetry, anti-symmetry, and composition patterns for any KG triples.
+
+Files supported:
+- A folder with `train.txt`, `valid.txt`, `test.txt` (whitespace `h r t` per line)
+- Or pass explicit files with `--files`
+ - Or load a PyKEEN dataset with `--pykeen`
+
+Examples:
+- Folder (e.g., FB15k-237):
+  - PowerShell: `python .\kg_pattern_stats.py --data path\to\dataset_folder`
+  - CMD: `python kg_pattern_stats.py --data path\to\dataset_folder`
+- Explicit files:
+  - PowerShell: `python .\kg_pattern_stats.py --files .\train.txt .\valid.txt .\test.txt`
+  - CMD: `python kg_pattern_stats.py --files .\train.txt .\valid.txt .\test.txt`
+- PyKEEN dataset (requires `pip install pykeen`):
+  - PowerShell: `python .\kg_pattern_stats.py --pykeen biokg`
+  - CMD: `python kg_pattern_stats.py --pykeen biokg`
+  - Also works: `--pykeen BioKG` or `--pykeen pykeen.datasets.biokg:BioKG`
+
+Optional thresholds:
+- `--sym-min-ratio 0.5`   minimum fraction of edges that have reverse for symmetry
+- `--anti-max-ratio 0.0`  maximum reciprocal fraction (off-diagonal) for anti-symmetry
+- `--comp-min-support 10` minimum composed edges explaining a relation
+- `--comp-min-ratio 0.1`  minimum coverage of a relation by a composition
+
+Output example:
+```
+pattern	dataset	anti-symmetry	composition	symmetry
+fb15k237	205	147	3
+```
+
 ## Troubleshooting
 - PowerShell execution policy blocks activation
   - Run in the current session: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
@@ -86,4 +118,3 @@ Adjust the command to your code structure once available.
   - Make sure you activated the venv (see step 3) before calling `sync_deps.bat`.
 - Pip not found or wrong Python
   - Ensure `python` resolves to the interpreter inside `venv` after activation: `where python`
-
